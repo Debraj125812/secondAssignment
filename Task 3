@@ -1,0 +1,31 @@
+def decrypt(text, key):
+    # Initialize an empty string to hold the decrypted text
+    decrypted_text = ""
+    # Loop through each character in the text
+    for char in text:
+        # Check if the character is an alphabet letter
+        if char.isalpha():
+            # Shift the character back by the key value
+            shifted = ord(char) - key
+            # Check if the character is lowercase
+            if char.islower():
+                # If it goes below 'a', wrap it around
+                if shifted < ord('a'):
+                    shifted += 26
+            # Check if the character is uppercase
+            elif char.isupper():
+                # If it goes below 'A', wrap it around
+                if shifted < ord('A'):
+                    shifted += 26
+            # Append the decrypted character to the result
+            decrypted_text += chr(shifted)
+        else:
+            # If not an alphabet letter, add it to the result as is
+            decrypted_text += char
+    return decrypted_text
+
+
+key = 13
+encrypted_code = "your encrypted text here"
+decrypted_code = decrypt(encrypted_code, key)
+print(decrypted_code)
